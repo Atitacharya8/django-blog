@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<h4>Delete this Blog?</h4>
+			<button>Delete</button>
+			<a href="/blog/list/">Cancel</a>
+			
+		</form>
+
+</body>
+</html>

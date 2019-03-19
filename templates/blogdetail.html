@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1><a href="/blogs/list/">Home</a></h1>
+<h4>Title:{{ blogdetail.title }}
+    <small>Posted on:{{ blogdetail.date }}</small>
+</h4>
+<hr>
+<a class="btn btn-info" href="/blogs/{{ blogdetail.pk }}/update/">Update this Blog</a>
+<a class="btn btn-danger" href="/blogs/{{ blogdetail.pk }}/delete/">Delete this Blog</a><br>
+<img src="{{ blogdetail.image.url }}" width="300px">
+<p>{{ blogdetail.content }}</p>
+<hr>
+<p>{{ article.review_set.all|length }} Comment{{ article.review_set.all|length|pluralize }}</p>
+<p>Author:{{ blogdetail.author }}</p>
+
+{% for item in blogdetail.review_set.all %}
+    <h5>{{ item.rate }} star{{ item.rate|pluralize }}</h5>
+    <p>{{ item.review }}</p>
+    <p>By : {{ item.user.username }}</p>
+
+    <div>
+        {{ item.created|timesince }} ago
+    </div>
+
+{% endfor %}
+
+<form method="POST" action="/blogs/{{ blogdetail.id }}/review/" >
+    {% csrf_token %}
+         <input type="text">
+        <input type="submit" class="btn btn-outline-success" value="Add comment">
+</form>
+
+
+</body>
+</html>

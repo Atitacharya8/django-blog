@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+  <a href="/blogs/create/">Create New Blog</a>
+
+	{% for blog in bloglist %}
+	   <h4> {{blog.title}}</h4>
+	    <img src="{{blog.image.url}}" width='300'>
+	    <p>{{blog.content|truncatechars:'100'}}</p>
+	    <a href="/blogs/{{blog.pk}}/detail/">Read More
+	    </a>
+	  
+	{% endfor %}
+
+</body>
+</html>
